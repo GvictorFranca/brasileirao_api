@@ -1,6 +1,5 @@
 node_modules
 .env
 logger.js
-example.js
 
-hello.js
+
