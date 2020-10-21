@@ -16,4 +16,4 @@ module.exports = {
 		'no-tabs': [2, { allowIndentationTabs: true }],
 		'prettier/prettier': ['error'],
 	},
-}
+};
