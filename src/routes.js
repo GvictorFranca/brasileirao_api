@@ -1,15 +1,16 @@
 const Router = require('koa-router');
-const logger = require('./middlewares/logger');
-const Matchs = require('./controllers/matches');
-const Users = require('./controllers/users');
+const Leaderboard = require('./controllers/leaderboard');
+const Matchs = require('./controllers/matchs');
+
+const Auth = require('./controllers/auth');
+const Session = require('./middlewares/session');
 
 const router = new Router();
 
-router.get('/games', Matchs.getMatchs);
-router.get('/user/:id', Users.getUser);
+router.post('/auth', Auth.authenticate);
 
-router.get('/logger', logger, (ctx) => {
-	ctx.body = 'Eu pasei pelo logger';
-});
+router.post('/update', Session.verify, Leaderboard.updateMatch);
+router.get('/leaderboard', Leaderboard.getLeaderboard);
+router.get('/matchs/:rodada', Matchs.getMatchs);
 
 module.exports = router;
